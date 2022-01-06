@@ -1,0 +1,92 @@
+<form #frm="ngForm">
+  <div class="container mt-4 pt-1">
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <select
+          name="filtre"
+          class="form-control mt-1 form-select"
+          (click)="egitimKayitListeleFiltre()"
+          [(ngModel)]="filtre"
+          id=""
+        >
+          <option value="Yazilim">Yazılım Geliştirme</option>
+          <option value="Tasarim">Tasarım</option>
+          <option value="">Tüm Eğitimler</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mt-2 mb-5">
+      <div
+        class="col col-12 col-md-6 col-lg-3 mb-2"
+        *ngFor="let egitim of egitimler"
+      >
+        <div class="card mt-2">
+          <div class="button-group position-absolute" style="top: 0; right: 0">
+            <button
+              class="btn btn-danger float-right mb-1"
+              title="Favorime Ekle"
+              (click)="
+                this.egitimID = egitim.key;
+                this.egitimFotoUrl = egitim.url;
+                this.egitimAd = egitim.egitimAd;
+                this.egitimBilgi = egitim.egitimBilgi;
+                this.egitimKategori = egitim.egitimKategori;
+                this.egitimFiyat = egitim.egitimFiyat;
+                this.kayTarih = egitim.kayTarih;
+                FavoriyeEkle()
+              "
+              (click)="ToastFavori()"
+            >
+              <i class="fas fa-heart"></i>
+            </button>
+          </div>
+          <img
+            [src]="egitim.url"
+            [routerLink]="['/egitim-detay', egitim.key]"
+            style="cursor: pointer"
+            class="card-img-top"
+          />
+          <div class="card-body">
+            <h5 class="card-title" style="font-size: 16px; font-weight: 700">
+              {{ egitim.egitimAd }}
+            </h5>
+            <p class="card-text" style="font-size: 14px">
+              {{ egitim.egitimBilgi }}
+            </p>
+            <h5
+              class="text-primary"
+              style="font-family: 'Montserrat', sans-serif"
+            >
+              <b>
+                <span style="font-size: 16px">₺</span>
+                <span style="font-size: large">{{ egitim.egitimFiyat }}</span>
+              </b>
+            </h5>
+            <button
+              class="btn btn-outline-dark btn-sm float-left mt-1"
+              [routerLink]="['/egitim-detay', egitim.key]"
+            >
+              Eğitim Detay
+            </button>
+            <button
+              class="btn btn-primary float-right"
+              (click)="
+                this.egitimID = egitim.key;
+                this.egitimFotoUrl = egitim.url;
+                this.egitimAd = egitim.egitimAd;
+                this.egitimBilgi = egitim.egitimBilgi;
+                this.egitimKategori = egitim.egitimKategori;
+                this.egitimFiyat = egitim.egitimFiyat;
+                this.kayTarih = egitim.kayTarih;
+                SepeteEkle()
+              "
+              (click)="ToastSepet()"
+            >
+              Sepete Ekle
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

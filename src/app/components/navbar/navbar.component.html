@@ -1,0 +1,112 @@
+<div class="container-fluid">
+  <nav
+    class="navbar navbar-expand-lg fixed-top navbar-light bg-light"
+    style="border-bottom: 1px solid #d1d7dc"
+  >
+    <div class="container">
+      <div class="site-logo">
+        <a routerLink="/" class="navbar-brand mr-5">Ata Eğitim</a>
+      </div>
+      <button
+        (click)="toggleNavbar()"
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        [class.show]="isOpen"
+        id="navbarSupportedContent"
+      >
+        <ul class="navbar-nav mt-1 mb-2 mb-lg-0">
+          <li class="nav-item pr-2">
+            <a
+              class="nav-link"
+              routerLink="/"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ><i class="fas fa-home"></i> Ana sayfa</a
+            >
+          </li>
+          <li class="nav-item pr-2">
+            <a class="nav-link" routerLink="/sepet" routerLinkActive="active"
+              ><i class="fas fa-shopping-cart"></i> Sepet
+            </a>
+          </li>
+          <li class="nav-item mr-5 pr-2">
+            <a
+              class="nav-link"
+              routerLink="/favori-egitimlerim"
+              routerLinkActive="active"
+              ><i class="fas fa-heart"> </i> Favori Eğitimlerim</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        [class.show]="isOpen"
+        id="navbarSupportedContent"
+      >
+        <ul
+          class="navbar-nav mt-1 mb-2 mb-lg-0"
+          style="display: flex; justify-content: center"
+        >
+          <li class="nav-item">
+            <button
+              href=""
+              class="btn btn-outline-primary btn-sm mr-2 mb-1"
+              routerLink="/kaydol"
+              routerLinkActive="active"
+              *ngIf="fbServis.OturumKontrol()"
+            >
+              Kaydol
+            </button>
+          </li>
+          <li class="nav-item">
+            <button
+              href=""
+              class="btn btn-outline-success btn-sm"
+              routerLink="/giris"
+              routerLinkActive="active"
+              *ngIf="fbServis.OturumKontrol()"
+            >
+              Giriş Yap
+            </button>
+          </li>
+          <li class="nav-item">
+            <label class="mt-1 mr-3" *ngIf="fbServis.OturumKontrolCikis()"
+              >Merhaba, <b>{{ secUye.adsoyad }}</b></label
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="btn btn-sm btn-outline-dark mr-2"
+              routerLink="/admin"
+              routerLinkActive="active"
+              *ngIf="adminKontrol(); hidden"
+              ><i class="fas fa-user-cog"></i> Admin</a
+            >
+          </li>
+          <li class="nav-item">
+            <button
+              class="btn btn-danger btn-sm"
+              routerLinkActive="active"
+              (click)="OturumKapat()"
+              *ngIf="fbServis.OturumKontrolCikis()"
+            >
+              <i class="fas fa-sign-out-alt"></i>
+              Çıkış Yap
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

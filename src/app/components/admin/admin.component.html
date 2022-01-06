@@ -1,0 +1,190 @@
+<div class="container-fluid mt-4">
+  <div class="row mb-5">
+    <div class="col col-md-9 mt-5">
+      <h5>Eğitimler</h5>
+      <hr />
+      <div class="table-responsive-lg">
+        <table class="table table-sm table-bordered">
+          <thead>
+            <td><b>Eğitim Görseli</b></td>
+            <td><b>Eğitim Adı</b></td>
+            <td><b>Eğitim Bilgisi</b></td>
+            <td><b>Eğitim Kategorisi</b></td>
+            <td><b>Eğitim Fiyatı</b></td>
+            <td><b>Kayıt Tarihi</b></td>
+            <td><b>Düzenlenme Tarihi</b></td>
+            <td><b>Düzenle</b></td>
+            <td><b>Sil</b></td>
+          </thead>
+          <tbody>
+            <tr *ngFor="let egitim of egitimler">
+              <td>
+                <img
+                  src="{{ egitim.url }}"
+                  alt=""
+                  style="height: 110px; width: 110px"
+                />
+              </td>
+              <td>{{ egitim.egitimAd }}</td>
+              <td>{{ egitim.egitimBilgi }}</td>
+              <td>{{ egitim.egitimKategori }}</td>
+              <td>{{ egitim.egitimFiyat }}</td>
+              <td>{{ egitim.kayTarih | date: "dd.MM.yyyy HH:mm" }}</td>
+              <td>{{ egitim.duzTarih | date: "dd.MM.yyyy HH:mm" }}</td>
+              <td>
+                <button
+                  class="btn btn-outline-warning btn-sm mt-2"
+                  (click)="Duzenle(egitim)"
+                >
+                  Düzenle
+                </button>
+              </td>
+              <td>
+                <button
+                  class="btn btn-outline-danger btn-sm mt-2"
+                  (click)="Sil(egitim)"
+                >
+                  Sil
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-3 float-right mt-5 mb-5">
+      <h5>Eğitim Kaydı Ekle</h5>
+      <hr />
+      <form ngForm="ngForm">
+        <hr />
+        <div class="form-group input-group-sm">
+          <label>Eğitim Görseli</label>
+          <input
+            type="file"
+            name="egitimFotoUrl"
+            [(ngModel)]="seckayit.egitimFotoUrl"
+            class="form-control"
+            (change)="this.DosyaSec($event)"
+          />
+        </div>
+        <input
+          type="hidden"
+          name="key"
+          class="form-control"
+          [(ngModel)]="seckayit.key"
+        />
+        <div class="form-group input-group-sm">
+          <label for="">Eğitim Adı</label>
+          <input
+            type="text"
+            name="egitimAd"
+            class="form-control"
+            [(ngModel)]="seckayit.egitimAd"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Eğitim Bilgi</label>
+          <textarea
+            type="text"
+            name="egitimBilgi"
+            class="form-control"
+            [(ngModel)]="seckayit.egitimBilgi"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="">Eğitim Kategorisi</label>
+          <select
+            name="egitimKategori"
+            class="form-control"
+            [(ngModel)]="seckayit.egitimKategori"
+          >
+            <option value="Yazilim">Yazılım</option>
+            <option value="Tasarim">Tasarım</option>
+          </select>
+        </div>
+        <div class="form-group input-group-sm">
+          <label for="">Eğitim Fiyatı</label>
+          <input
+            type="text"
+            name="egitimFiyat"
+            class="form-control"
+            [(ngModel)]="seckayit.egitimFiyat"
+          />
+        </div>
+        <div class="form-group input-group-sm">
+          <label for="">Eğitim Kısa Açıklama 1</label>
+          <input
+            type="text"
+            name="egitimKisaBir"
+            class="form-control"
+            [(ngModel)]="seckayit.egitimKisaBir"
+          />
+        </div>
+        <div class="form-group input-group-sm">
+          <label for="">Eğitim Kısa Açıklama 2</label>
+          <input
+            type="text"
+            name="egitimKisaIki"
+            class="form-control"
+            [(ngModel)]="seckayit.egitimKisaIki"
+          />
+        </div>
+        <div class="form-group input-group-sm">
+          <label for="">Eğitim Kısa Açıklama 3</label>
+          <input
+            type="text"
+            name="egitimKisaUc"
+            class="form-control"
+            [(ngModel)]="seckayit.egitimKisaUc"
+          />
+        </div>
+        <div class="form-group input-group-sm">
+          <label for="">Eğitim Kısa Açıklama 4</label>
+          <input
+            type="text"
+            name="egitimKisaDort"
+            class="form-control"
+            [(ngModel)]="seckayit.egitimKisaDort"
+          />
+        </div>
+        <div class="form-group input-group-sm">
+          <label for="">Eğitim Kısa Açıklama 5</label>
+          <input
+            type="text"
+            name="egitimKisaBes"
+            class="form-control"
+            [(ngModel)]="seckayit.egitimKisaBes"
+          />
+        </div>
+        <div class="form-group input-group-sm">
+          <label for="">Eğitim Kısa Açıklama 6</label>
+          <input
+            type="text"
+            name="egitimKisaAlti"
+            class="form-control"
+            [(ngModel)]="seckayit.egitimKisaAlti"
+          />
+        </div>
+        <div class="form-group">
+          <button routerLink="/" class="btn btn-primary float-left mb-5">
+            Eğitimleri Gör
+          </button>
+          <input
+            type="submit"
+            value="Kaydet"
+            (click)="Kaydet()"
+            (click)="DosyaYukle()"
+            class="btn btn-outline-success float-right"
+          />
+        </div>
+        <div
+          class="mt-5"
+          [ngClass]="sonuc.islem ? 'alert alert-success' : 'alert alert-danger'"
+          *ngIf="sonuc.mesaj?.length > 0"
+        >
+          {{ sonuc.mesaj }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

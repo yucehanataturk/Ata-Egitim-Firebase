@@ -1,0 +1,125 @@
+<div
+  class="container-fluid mt-5 pt-1"
+  style="font-family: 'Montserrat', sans-serif"
+>
+  <div class="row mt-4 mb-5">
+    <div
+      class="
+        container
+        col col-md-12 col-md-6 col-lg-3
+        mb-2
+        mt-4
+        float-left
+        border-left-0 border-bottom-0 border-right-0
+      "
+      style="object-fit: contain"
+    >
+      <img
+        [src]="secKayit.url"
+        class="card-img-top"
+        style="width: 475px; height: 300px"
+      />
+    </div>
+    <div
+      class="
+        container
+        col col-md-6 col-lg-6
+        mt-4
+        border border-left-0 border-bottom-0 border-right-0
+      "
+      style="background-color: rgb(247, 247, 247)"
+    >
+      <div class="float-right p-4 mt-2">
+        <button
+          class="btn btn-sm btn-outline-danger float-right"
+          title="Favorime Ekle"
+          (click)="
+            this.egitimID = secKayit.key;
+            this.egitimFotoUrl = secKayit.url;
+            this.egitimAd = secKayit.egitimAd;
+            this.egitimBilgi = secKayit.egitimBilgi;
+            this.egitimKategori = secKayit.egitimKategori;
+            this.egitimFiyat = secKayit.egitimFiyat;
+            this.kayTarih = secKayit.kayTarih;
+            FavoriyeEkle()
+          "
+          (click)="ToastFavori()"
+        >
+          <i class="fas fa-heart"></i>
+        </button>
+        <h4>
+          <b>{{ secKayit.egitimAd }}</b>
+        </h4>
+        <hr />
+        <p>{{ secKayit.egitimBilgi }}</p>
+        <h1 class="text-primary float-left mt-3">
+          <span style="font-size: 30px">₺</span>
+          <b class="m-0 p-0">
+            {{ secKayit.egitimFiyat }}
+          </b>
+        </h1>
+        <button
+          class="btn btn-lg btn-outline-success pl-5 pr-5 mt-3 float-right"
+          (click)="
+            this.egitimID = secKayit.key;
+            this.egitimFotoUrl = secKayit.url;
+            this.egitimAd = secKayit.egitimAd;
+            this.egitimBilgi = secKayit.egitimBilgi;
+            this.egitimKategori = secKayit.egitimKategori;
+            this.egitimFiyat = secKayit.egitimFiyat;
+            this.kayTarih = secKayit.kayTarih;
+            SepeteEkle()
+          "
+          (click)="ToastSepet()"
+        >
+          <i class="fas fa-shopping-cart"></i> Sepete Ekle
+        </button>
+      </div>
+      <div class="fs-6 float-right mr-4">
+        <span
+          >Son güncelleme tarihi:
+          {{ secKayit.kayTarih | date: "dd/MM/yyyy" }}</span
+        >
+      </div>
+      <div class="pl-4 fs-5"><b>Öğrenecekleriniz</b></div>
+      <div class="p-4">
+        <div class="pr-5 lh-sm mb-2">
+          <i class="fas fa-check"></i>
+          <span>
+            {{ secKayit.egitimKisaBir }}
+          </span>
+        </div>
+        <div class="pr-5 lh-sm mb-2">
+          <i class="fas fa-check"></i>
+          <span>
+            {{ secKayit.egitimKisaIki }}
+          </span>
+        </div>
+        <div class="pr-5 lh-sm mb-2">
+          <i class="fas fa-check"></i>
+          <span>
+            {{ secKayit.egitimKisaUc }}
+          </span>
+        </div>
+        <div class="pr-5 lh-sm mb-2">
+          <i class="fas fa-check"></i>
+          <span>
+            {{ secKayit.egitimKisaDort }}
+          </span>
+        </div>
+        <div class="pr-5 lh-sm mb-2">
+          <i class="fas fa-check"></i>
+          <span>
+            {{ secKayit.egitimKisaBes }}
+          </span>
+        </div>
+        <div class="pr-5 lh-sm mb-2">
+          <i class="fas fa-check"></i>
+          <span>
+            {{ secKayit.egitimKisaAlti }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

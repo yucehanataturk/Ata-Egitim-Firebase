@@ -1,0 +1,53 @@
+<ng-template #egitimyok>
+  <div class="alert alert-danger" role="alert">
+    <i class="fas fa-heart-broken"></i>
+    Favorilerinde kurs yok! Favorilerine eğitimler eklemek ve kursları incelemek
+    için
+    <a href="" class="alert-link">tıkla!</a>
+  </div>
+</ng-template>
+<form #frm="ngForm">
+  <div class="container mt-2 pt-1">
+    <div class="row mt-5 mb-5">
+      <div class="col col-md-12 mb-3">
+        <h4 class="mt-5">Favori Eğitimlerim</h4>
+        <span class="" *ngIf="favoriEgitim > 0; else egitimyok"></span>
+      </div>
+      <div
+        class="col col-12 col-sm-6 col-lg-3 mb-2"
+        *ngFor="let egitim of egitimler"
+      >
+        <div class="card">
+          <img [src]="egitim.egitimFotoUrl" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="card-title">{{ egitim.egitimAd }}</h5>
+            <p class="card-text">{{ egitim.egitimBilgi }}</p>
+            <h5
+              class="text-primary"
+              style="font-family: 'Montserrat', sans-serif"
+            >
+              <b>
+                <span style="font-size: 16px">₺</span>
+                <span style="font-size: large">{{ egitim.egitimFiyat }}</span>
+              </b>
+            </h5>
+            <div class="button-group">
+              <button
+                class="btn btn-outline-secondary btn-sm float-left mt-1"
+                [routerLink]="['/egitim-detay', egitim.egitimID]"
+              >
+                Eğitim Detay
+              </button>
+              <button
+                class="btn btn-sm btn-danger float-right mt-1"
+                (click)="btnSil(egitim)"
+              >
+                Favoriden Çıkar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

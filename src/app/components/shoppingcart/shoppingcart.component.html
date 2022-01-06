@@ -1,0 +1,66 @@
+<ng-template #egitimyok>
+  <div class="alert alert-danger" role="alert">
+    <!-- <i class="fas fa-cart-arrow-down"></i> -->
+    <img src="assets/cart1.png" alt="" width="20px" height="20px" />
+    Sepette kurs yok! Eğitimler için
+    <a href="" class="alert-link">tıkla!</a>
+  </div>
+</ng-template>
+<div class="container mt-1 pt-1">
+  <div class="row mt-5 mb-5">
+    <div class="col col-md-12 mb-1">
+      <h4 class="mt-5">Sepetim</h4>
+      <button
+        *ngIf="toplam > 0; else egitimyok"
+        class="btn btn-outline-success btn mb-2 float-right"
+      >
+        Siparişi Tamamla
+      </button>
+      <div
+        class="float-right mt-2 pr-3"
+        style="font-family: Montserrat"
+        *ngIf="toplam > 0; hidden"
+      >
+        <span><b>Toplam Fiyat: </b></span
+        ><span style="font-size: 16px">₺</span> {{ toplam + ",99" }}
+      </div>
+      <table class="table">
+        <thead *ngIf="toplam > 0; else 'hidden'">
+          <td><b>Eğitim Görseli</b></td>
+          <td><b>Eğitim Adı</b></td>
+          <td><b>Eğitim Bilgisi</b></td>
+          <td><b>Eğitim Fiyatı</b></td>
+          <td><b>Sil</b></td>
+        </thead>
+        <tbody>
+          <tr *ngFor="let egitim of egitimler">
+            {{
+              this.sepetToplam(egitim.egitimFiyat)
+            }}
+            <td>
+              <img
+                [src]="egitim.egitimFotoUrl"
+                [routerLink]="['/egitim-detay', egitim.egitimID]"
+                style="width: 100px; height: 100px; cursor: pointer"
+              />
+            </td>
+            <td>{{ egitim.egitimAd }}</td>
+            <td>{{ egitim.egitimBilgi }}</td>
+            <td>
+              <span style="font-size: 16px">₺</span>
+              <span style="font-size: large">{{ egitim.egitimFiyat }}</span>
+            </td>
+            <td>
+              <button
+                class="btn btn-outline-danger btn-sm mt-2"
+                (click)="btnSil(egitim); this.toplam = 0"
+              >
+                Sil
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
